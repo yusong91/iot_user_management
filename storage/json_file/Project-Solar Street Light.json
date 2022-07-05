@@ -1,0 +1,7 @@
+{
+   "DeviceList":{
+      "device1":"GatewayInfo",
+      "device2":"LightPole_EndNode_Info",
+      "device3":"LightPole_RelayNode_Info"
+   }
+}
