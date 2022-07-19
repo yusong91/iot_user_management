@@ -28,7 +28,6 @@
 
 </style> 
 
-
 @foreach($group_table_data as $key => $values)
 
     <fieldset class="scheduler-border">

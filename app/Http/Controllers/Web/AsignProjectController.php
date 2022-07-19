@@ -44,7 +44,6 @@ class AsignProjectController extends Controller
         $joined;
         $joined_project;
         
-    
         switch ($user_role) { 
             case '1': 
                 

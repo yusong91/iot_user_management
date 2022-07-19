@@ -5,6 +5,11 @@
 			"nullable":"no",
 			"default":""
 		},
+		"Name":{
+			"type":"char",
+			"nullable":"no",
+			"default":""
+		},
 		"Genset_Model":{
 			"type":"char",
 			"nullable":"no",

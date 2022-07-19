@@ -14,7 +14,6 @@
 @stop
 
 @section('content')
- 
 @include('partials.messages') 
 
 <form action="{{ route('project.device.store') }}" method="POST" id="user-form" accept-charset="UTF-8">
@@ -25,6 +24,8 @@
 
 	<div class="card">
 		<div class="card-body">
+            <h3>{{$table_name}}</h3> 
+            <hr>
 			@include('device.partials.input-form')
 		</div>
 	</div>

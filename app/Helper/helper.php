@@ -314,12 +314,31 @@ if(!function_exists('checkUserDelete')){
 
 if(!function_exists('getTitle')){
     function getTitle($title){
-        
         $str = str_replace('Title_', '', $title);
-
         return $str;
     }
 }
+
+if(!function_exists('getTableName')){
+    function getTableName($name){
+        $str = str_replace('Title_', '', $name);
+        return $str;
+    }
+}
+
+if(!function_exists('checkIsNotSpecialCharacter')){
+    function checkIsNotSpecialCharacter($str){
+        if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $str))
+        {
+            return false;
+        }else{
+            return true;
+        }
+    }
+}
+
+
+
 
 
 

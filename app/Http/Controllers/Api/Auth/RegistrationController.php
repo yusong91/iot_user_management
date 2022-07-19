@@ -11,31 +11,16 @@ use Vanguard\Support\Enum\UserStatus;
 
 class RegistrationController extends ApiController
 {
-    /**
-     * @var UserRepository
-     */
     private $users;
 
-    /**
-     * @var RoleRepository
-     */
     private $roles;
 
-    /**
-     * Create a new authentication controller instance.
-     * @param UserRepository $users
-     * @param RoleRepository $roles
-     */
     public function __construct(UserRepository $users, RoleRepository $roles)
     {
         $this->users = $users;
         $this->roles = $roles;
     }
 
-    /**
-     * @param RegisterRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function index(RegisterRequest $request)
     {
         $role = $this->roles->findByName('User');
@@ -46,17 +31,11 @@ class RegistrationController extends ApiController
 
         event(new Registered($user));
 
-        return $this->setStatusCode(201)
-            ->respondWithArray([
+        return $this->setStatusCode(201)->respondWithArray([
                 'requires_email_confirmation' => !! setting('reg_email_confirmation')
             ]);
     }
 
-    /**
-     * Verify email via email confirmation token.
-     * @param $token
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function verifyEmail($token)
     {
         if (! setting('reg_email_confirmation')) {
@@ -72,7 +51,6 @@ class RegistrationController extends ApiController
             return $this->respondWithSuccess();
         }
 
-        return $this->setStatusCode(400)
-            ->respondWithError("Invalid confirmation token.");
+        return $this->setStatusCode(400)->respondWithError("Invalid confirmation token.");
     }
 }

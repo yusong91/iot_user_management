@@ -19,4 +19,23 @@
             </div>
         </div>             
     </div>
+
+</fieldset>
+
+<fieldset class="scheduler-border">
+	<legend class="scheduler-border">@lang('Project Method')</legend>
+
+    @foreach($project_methods as $items)
+        <div class="row mt-2">
+            @foreach($items as $key => $value)
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="project_method[]" value="{{ $key }}" id="{{ $key }}">
+                        <label class="form-check-label" for="{{ $key }}">{{ $value }}</label>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endforeach
+
 </fieldset>

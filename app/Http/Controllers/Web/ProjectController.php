@@ -52,7 +52,8 @@ class ProjectController extends Controller
   
     public function create() 
     {
-        return view('project.create');
+        $project_methods = array(['tcp_server'=>'TCP Server', 'mqtt_broker'=>'MQTT Broker', 'http_https'=>'HTTP/HTTPS'], ['ota'=>'OTA', 'telegram_bot'=>'Telegram Bot', 'database'=>'Database']);
+        return view('project.create', compact('project_methods'));
     } 
 
     public function store(CreateRequest $createRequest)

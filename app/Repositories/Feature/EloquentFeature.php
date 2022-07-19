@@ -111,6 +111,10 @@ class EloquentFeature implements FeatureRepository
                                 $table->string($jkey, 190)->default($item['default'])->comment($comments);
                                 break;
 
+                            case 'text':
+                                $table->text($jkey)->default($item['default'])->comment($comments);
+                                break;
+
                             case 'double': 
                                 $default = (Double)$item['default'];
                                 $table->double($jkey, 100, 2)->default($default)->comment($comments);
