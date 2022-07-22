@@ -139,7 +139,6 @@ class ProjectController extends Controller
  
     public function store_folder(Request $request)
     {
-        
         $user_id = auth()->user()->id;
         $parent_id = auth()->user()->parent_id == 0 ? $user_id : auth()->user()->parent_id;
         $data = $request->all() + ['user_id'=>$user_id, 'parent_id'=> $parent_id];
@@ -154,7 +153,7 @@ class ProjectController extends Controller
     //End Project Folder
 
     //Project Method
-    public function show_method($key)
+    public function show_method($key, Request $request)
     {
         $table_thead = array();
         $user_id = auth()->user()->id;
@@ -216,6 +215,18 @@ class ProjectController extends Controller
         }
         return redirect(route('project.index'))->withSuccess('Fail');  
     }
+
+    public function edit_method()
+    {
+        dd('edit');
+    }
+
+    public function update_method()
+    {
+        dd('update');
+    }
+
+
 
     //End Project Method
 
