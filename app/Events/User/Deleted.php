@@ -9,7 +9,7 @@ class Deleted
     /**
      * @var User
      */
-    protected $deletedUser;
+    protected $deletedUserr;
 
     public function __construct(User $deletedUser)
     {

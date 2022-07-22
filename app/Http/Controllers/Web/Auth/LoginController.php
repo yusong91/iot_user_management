@@ -33,7 +33,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
-
         $this->users = $users;
     }
 
@@ -77,15 +76,13 @@ class LoginController extends Controller
                 $this->incrementLoginAttempts($request);
             }
 
-            return redirect()->to('login' . $to)
-                ->withErrors(trans('auth.failed'));
+            return redirect()->to('login' . $to)->withErrors(trans('auth.failed'));
         }
 
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         if ($user->isBanned()) {
-            return redirect()->to('login' . $to)
-                ->withErrors(__('Your account is banned by administrator.'));
+            return redirect()->to('login' . $to)->withErrors(__('Your account is banned by administrator.'));
         }
 
         Auth::login($user, setting('remember_me') && $request->get('remember'));

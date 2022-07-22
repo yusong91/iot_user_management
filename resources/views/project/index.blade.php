@@ -48,7 +48,7 @@
                 <tr>
                     <th>No</th>
                     <th >@lang('Project')</th>
-                    <th >@lang('Created_at')</th>
+                    <th >@lang('Methods')</th>
                     <th class="text-center">@lang('Action')</th>
                 </tr>
                 </thead>
@@ -60,7 +60,7 @@
                                 <tr>
                                     <td>{{$loop->index + 1}}</td>
                                     <td >{{ $item->name}}</td>
-                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{  getDisplayMethods($item->project_method) }}</td>
                                     <td class="text-center">
 
                                         <a href="{{ route('project.feature.show', $item->id) }}" class="btn btn-icon edit" title="@lang('Project Feature')" data-toggle="tooltip" data-placement="top"> <i class="fas fa-list"></i> </a> 
@@ -81,7 +81,6 @@
                                 <td colspan="7"><em>@lang('No records found.')</em></td>
                             </tr>
                         @endif
-
                 </tbody>
             </table>
         </div>
@@ -102,10 +101,3 @@
 
 @stop
 
-@section('scripts')
-    <script>
-        $("#status").change(function () {
-            $("#users-form").submit();
-        });
-    </script>
-@stop

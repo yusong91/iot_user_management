@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Database\SQLiteConnection;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Vanguard\Events\Project\DeletedProject;
 
 class EloquentProject implements ProjectRepository 
 {
@@ -43,6 +44,7 @@ class EloquentProject implements ProjectRepository
 
     public function create(array $data, $json) 
     {   
+        $project_method = [];
         $device_list = [];
 
         foreach($json['DeviceList'] as $item)
@@ -54,6 +56,7 @@ class EloquentProject implements ProjectRepository
         $project->name = $data["name"];
         $project->user_id = auth()->user()->id;
         $project->device_list = json_encode($device_list);
+        $project->project_method =  isset($data['project_method']) ? json_encode($data['project_method']) : null;
         $project->save();
         return $project;       
     } 
@@ -82,6 +85,8 @@ class EloquentProject implements ProjectRepository
             }
             $project->device_list = json_encode($device_list);
         }
+
+        $project->project_method =  isset($data['project_method']) ? json_encode($data['project_method']) : null;
         return $project->save();
     }
 
@@ -91,9 +96,32 @@ class EloquentProject implements ProjectRepository
         $result = $delete->delete();
         if($result)
         {
-            Schema::dropIfExists($delete->name);
+            event(new DeletedProject($delete));
+            //Schema::dropIfExists($delete->name);
         }
         return $result;
+    }
+
+    //Create Project Method
+    public function create_method($table_name,  array $data)
+    {
+        if(isset($data['_token']))
+        {
+            unset($data['_token']);
+            unset($data['table_name']); 
+        }
+
+        $data_insert = [];
+
+        // foreach($data as $key => $item)
+        // {
+        //     if(str_contains(strtolower($key) , 'date'))
+        //     {
+        //         $data[$key] = $this->getDate($item); 
+        //     }
+        // }
+
+        return DB::table($table_name)->insert($data); 
     }
 
     // public function create(array $data, $json) 

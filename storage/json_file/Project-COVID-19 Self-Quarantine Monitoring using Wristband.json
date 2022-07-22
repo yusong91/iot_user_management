@@ -1,0 +1,7 @@
+{
+   "DeviceList":{
+      "device1":"ScannerInfo",
+      "device2":"GatewayInfo",
+      "device3":"Wristband_Info"
+   }
+}

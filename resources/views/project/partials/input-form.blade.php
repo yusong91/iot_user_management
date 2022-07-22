@@ -12,8 +12,8 @@
         <div class="col-md-6">
             <div class="form-floating">
                 <label for="file_json">@lang('Import JSON')</label> <span>*</span>
-                <div class="custom-file">
-                    <input id="file-upload" class="custom-file-input" type="file" name="file_json">
+                <div class="custom-file disabled">
+                    <input id="file-upload" class="custom-file-input" {{ isset($edit->name) ? 'disabled': '' }}  type="file" name="file_json">
                     <label for="file-upload" class="custom-file-label">@lang('Choose File')</label>
                 </div>
             </div>
@@ -28,9 +28,22 @@
     @foreach($project_methods as $items)
         <div class="row mt-2">
             @foreach($items as $key => $value)
+
+
+                <?php 
+                    $check = '';
+                    foreach ($list_method as $method){                    
+                        if ($key == $method) {
+                            $check = 'checked';
+                        }   
+                    }
+                ?>
+
+
+
                 <div class="col-md-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="project_method[]" value="{{ $key }}" id="{{ $key }}">
+                        <input class="form-check-input" type="checkbox" {{ $check }} name="project_method[]" value="{{ $key }}" id="{{ $key }}">
                         <label class="form-check-label" for="{{ $key }}">{{ $value }}</label>
                     </div>
                 </div>

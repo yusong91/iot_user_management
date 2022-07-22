@@ -69,6 +69,13 @@ if(!function_exists('getDisplayProjects')){
     }
 }
 
+if(!function_exists('getDisplayMethods')){
+    function getDisplayMethods($str){
+
+        return str_replace( array('\'', '"',';', '[', ']'), ' ', $str);
+    }
+}
+
 if(!function_exists('getDisplayFolders')){
     function getDisplayFolders($datas){
         $projects = [];
@@ -336,6 +343,23 @@ if(!function_exists('checkIsNotSpecialCharacter')){
         }
     }
 }
+
+if(!function_exists('getListMethod')){
+    function getListMethod($str){
+
+        $method = $str->project_method ? json_decode($str->project_method) : [];
+        return $method;
+    }
+}
+
+if(!function_exists('getTableHead')){
+    function getTableHead($str){
+
+        $header = str_replace('_', ' ', $str);
+        return ucwords($header);
+    }
+}
+
 
 
 

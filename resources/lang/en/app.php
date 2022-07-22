@@ -20,5 +20,7 @@ return [
         'Active' => 'Active',
         'Banned' => 'Banned',
         'Unconfirmed' => 'Unconfirmed',
-    ]
+    ],
+
+    'telegram_bot'=>'Telegram'
 ];

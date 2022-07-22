@@ -16,6 +16,27 @@
                         <td class="align-middle">{{ $item->name}}</td>
                         <td class="align-middle">{{ $item->created_at }}</td>
                         <td class="text-center align-middle">
+                        
+
+                            <div class="dropdown show d-inline-block">
+                                <a class="btn btn-icon" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"><i class="fas fa-list mr-2"></i></a>
+
+                                @if(auth()->user()->role_id == 2)
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+
+                                        @foreach(getListMethod($item->parent_project) as $value)
+                                            <a href="{{ route('project.method.show', $value) }}" class="dropdown-item text-gray-500"><i class="fas fa-list mr-2"></i>{{ $value }}</a>
+                                        @endforeach
+                                        
+                                        
+
+                                    </div>
+                                @endif
+
+                            </div>
+
+
+
                             <a href="{{ route('project.device.show', $item->id.','.$item->project_id) }}" class="btn btn-icon edit" data-placement="top"> <span class="badge badge-primary p-2">Device</span> </a> 
                             @permission('project.edit')
                                 <a href="{{ route('project.edit', $item->id) }}" class="btn btn-icon edit" title="@lang('Edit Project')" data-toggle="tooltip" data-placement="top"> <i class="fas fa-edit"></i> </a>

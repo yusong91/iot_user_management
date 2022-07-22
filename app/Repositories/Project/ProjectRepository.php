@@ -10,7 +10,5 @@ interface ProjectRepository
     public function create(array $data, $json);
     public function update($id, array $data);
     public function delete($id);
-
-    
-
+    public function create_method($table_name,  array $data);
 }

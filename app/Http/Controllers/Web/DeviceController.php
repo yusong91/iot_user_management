@@ -48,8 +48,8 @@ class DeviceController extends Controller
         $folder = getFolderById($folder_id);
         $project_id = $folder->project_id;
         $table_name = $folder->parent_project->name . '_' . $device_feature;
-        //dd($table_name);
-        $table = DB::select('SHOW FULL COLUMNS FROM '. $table_name); //Street_Light_GatewayInfo
+        
+        $table = DB::select('SHOW FULL COLUMNS FROM '. $table_name);
         
         $table_data = [];
         
